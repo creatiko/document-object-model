@@ -2,7 +2,7 @@ const questOneAnswer = document.querySelector('.title')
 const questTwoAnswer = document.querySelector("img[alt='panda developer']")
 const questThreeAnswer = document.querySelectorAll('.intro ul')
 const questFourAnswer = document.querySelector('.sloth').parentElement
-const questFiveAnswer = document.querySelector("div[data-questNum = 'five'] p")
+const questFiveAnswer = document.querySelector("div[data-questnum='five'] p")
 
 function executeQuery(query) {
     try {
