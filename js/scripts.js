@@ -2,7 +2,7 @@ const questOneAnswer = document.querySelector('.title')
 const questTwoAnswer = document.querySelector("img[alt='panda developer']")
 const questThreeAnswer = document.querySelectorAll('.intro ul')
 const questFourAnswer = document.querySelector('.sloth').parentElement
-const questFiveAnswer = document.querySelector("div[data-questnum='five'] p")
+const questFiveAnswer = document.querySelector('div[data-questnum="five"] p')
 
 function executeQuery(query) {
     try {
@@ -15,7 +15,8 @@ function executeQuery(query) {
 
 function sanitizeQuery(input) {
     // Remove anything that's not alphanumeric, spaces, or specific allowed characters
-    const sanitized = input.replace(/[^a-zA-Z0-9\s\.\[\]"'=()]/g, '');
+    //const sanitized = input.replace(/[^a-zA-Z0-9\s\.\[\]"'=()]/g, '');
+    const sanitized = input.replace(/[^a-zA-Z0-9\s\.\[\]"'=()-]/g, '');
 
     // Ensure the query starts with 'document.querySelector' or 'document.querySelectorAll'
     if (!sanitized.startsWith('document.querySelector') && !sanitized.startsWith('document.querySelectorAll')) {
@@ -23,6 +24,7 @@ function sanitizeQuery(input) {
     }
 
     // Limit the length of the query
+    console.log(sanitized.slice(0, 100));
     return sanitized.slice(0, 100);
 }
 
@@ -30,7 +32,7 @@ const handleAnswerSubmission = async (event) => {
     if (event.target.nodeName != 'BUTTON') {
         return
     } else {
-        console.log(event.target.parentElement.querySelector('input')?.value)
+        //console.log(event.target.parentElement.querySelector('input')?.value)
         const answerValue = event.target.parentElement.querySelector('input')?.value
         const sanitizedQuery = await sanitizeQuery(answerValue)
         const answerElement = await executeQuery(sanitizedQuery)
